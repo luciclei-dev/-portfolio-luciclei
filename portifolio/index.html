@@ -14,7 +14,7 @@
 <body>
     <header class="header" id="header">
         <nav class="nav_container">
-            <a href="index.html" class="nav__logo">Início</a>
+            <a href="index.html" class="nav__logo"> Inicio </a>
 
             <div class="nav__menu" id="nav-menu">
                 <ul class="nav__list">
@@ -68,7 +68,8 @@
                     <div class="home__data grid">
                         <h1 class="home__name">LUCICLEI OLIVEIRA</h1>
 
-                        <h2 class="home__profession">Dev <span>Fullstack & Visual Designer</span></h2>
+                        <h2 class="home__profession"></h2><div id="texto"></div>
+                       
 
                         <div class="home__social">
                             <a href="https://github.com/" target="_blank" class="home__social-link"><i class="ri-github-fill"></i></a>
@@ -347,8 +348,43 @@
         <i class="ri-arrow-up-line"></i>
     </a>
 
+ <script>
+     
+    const frase = " Dev Fullstack & Visual Designer";
+    const elemento = document.getElementById("texto");
+    let index = 0;
+    let apagando = false;
 
-    
+    function loopDigitacao() {
+      if (!apagando) {
+        // Digitando
+        if (index < frase.length) {
+          elemento.textContent += frase.charAt(index);
+          index++;
+          setTimeout(loopDigitacao, 100); // Velocidade da digitação
+        } else {
+          // Espera antes de apagar
+          setTimeout(() => {
+            apagando = true;
+            loopDigitacao();
+          }, 1500); // Tempo de pausa após digitar tudo
+        }
+      } else {
+        // Apagando
+        if (index > 0) {
+          elemento.textContent = frase.substring(0, index - 1);
+          index--;
+          setTimeout(loopDigitacao, 50); // Velocidade de apagar
+        } else {
+          apagando = false;
+          setTimeout(loopDigitacao, 500); // Pausa antes de recomeçar
+        }
+      }
+    }
+
+    loopDigitacao(); // Iniciar
+  </script>
+
 
 <script src="assets/js/main.js"></script>
 <script src="assets/js/swiper-bundle.min.js"></script>
